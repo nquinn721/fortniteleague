@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import Game from './config';
+
+console.log(Game);
 
 @Component({
   selector: 'app-root',
