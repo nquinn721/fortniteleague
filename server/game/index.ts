@@ -3,7 +3,7 @@ var grid = new Grid(20000, 20000, {w: 400, h: 400}); // Segment is {w : w, h : h
 var item = grid.createItem(110, 110); // Returns Item
 
 module.exports = (io, socket) => {
-
+	
 	socket.on('player move', (player) => {
 		item.update(player.x, player.y) // Defaults to current x and y
 		io.emit('player move', item.plain());

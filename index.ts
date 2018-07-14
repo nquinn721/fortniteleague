@@ -6,6 +6,7 @@ const express = require('express'),
       { exec } = require('child_process'),
       port = 3000;
 
+console.log('yep');
 
 require('./server/globals');
 
@@ -13,6 +14,7 @@ require('./server/globals');
 http.listen(port, () => console.log('Server listening on port', port));
 
 app.use(express.static(join(__dirname, BASE_PATH)));
+app.use(express.static(join(__dirname, 'game')));
 
 app.get('*', (req, res) => res.sendFile(join(__dirname, BASE_PATH, 'index.html')));
 

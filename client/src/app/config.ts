@@ -1,11 +1,7 @@
 import Phaser from 'phaser/dist/phaser';
 import { Injectable } from '@angular/core';
-import Player from '../../../game/player';
-
-
-import * as io from 'socket.io-client'; 
-
-
+import * as io from 'socket.io-client';
+import Player from '@game/player';
 const url = 'http://localhost:3000';  
 const player = new Player;
 
@@ -48,15 +44,21 @@ function create () {
  	this.player = this.add.sprite(player.x + 50, player.y + 50, 'mummy');
  	this.player.scaleX = 3;
  	this.player.scaleY = 3;
- 	console.log(this.player);
-	this.anims.create({ key: 'walk', frames: [0,1,2], frameRate: 10, repeat: -1 });
- 	// this.anims.create({
- 	// 	key: 'down',
- 	// 	frames: this.anims.generateFromNumbers('mummy', {start: 0, end: 3}),
- 	// 	repeat: 1
- 	// })
- 	keys = this.input.keyboard.createCursorKeys();
 
+	// this.anims.create({ key: 'walk', frames: [0,1,2], frameRate: 10, repeat: -1 });
+ 	this.anims.create({
+ 		key: 'left',
+ 		frames: this.anims.generateFrameNumbers('mummy', {start: 0, end: 3}),
+ 		repeat: -1
+ 	});
+ 	this.anims.create({
+ 		key: 'idle',
+ 		frames: this.anims.generateFrameNumbers('mummy',{start: 0, end: 0}),
+ 		repeat: -1
+ 	})
+ 	keys = this.input.keyboard.createCursorKeys();
+ 	console.log(this.anims);
+ 	
  	// this.physics.enable(this.player, Phaser.Physics.ARCADE);
  	// this.player.setCollideWorldBounds(true);
 
@@ -66,7 +68,8 @@ function create () {
     // this.player.animations.add('left', [0, 1, 2, 3], 10, true);
     // this.player.animations.add('turn', [4], 20, true);
     // this.player.animations.add('right', [5, 6, 7, 8], 10, true);
-
+    console.log(keys);
+    
 
  	this.input.keyboard.on('keydown', function (event) {
  		// if(event.key === 'd')player.x += 5;
@@ -86,6 +89,12 @@ function create () {
 }
 
 function update() {
+
+	if(keys.left.isDown){
+	 	this.player.anims.play('left', true);
+	 }else{
+	 	this.player.anims.play('idle', true);
+	 }
 	this.image.x = player.x;
 	this.image.y = player.y;	
 }
