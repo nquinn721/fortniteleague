@@ -16,7 +16,8 @@
 
     "paths": {
       "socket.io-client": ["../node_modules/socket.io-client/dist/socket.io.js"],
-      "@game/*": ["../game/*"]
+      "@game/*": ["../game/*"],
+      "@app/*": ["src/app/*"]
     },
     "lib": [
       "es2017",

@@ -2,8 +2,14 @@ import Phaser from 'phaser/dist/phaser';
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import Player from '@game/player';
+import start from '@app/something';
 const url = 'http://localhost:3000';  
 const player = new Player;
+console.log('hi');
+console.log('hi');
+console.log('hi');
+console.log('hi');
+console.log('hi');
 
   
 const socket = io(url);
